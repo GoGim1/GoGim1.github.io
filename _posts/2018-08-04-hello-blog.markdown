@@ -16,7 +16,7 @@ tags:
 
 
 
-今天使用 [GitHub Pages](https://pages.github.com/) + [Jekyll](http://jekyllrb.com/) + [huxblog boilerplate](https://github.com/Huxpro/huxpro.github.io) 搭建个人博客。
+今天使用 [GitHub Pages](https://pages.github.com/) + [Jekyll](http://jekyllrb.com/) + [huxblog boilerplate](https://github.com/Huxpro/huxpro.github.io) + [gitment](https://github.com/imsun/gitment) 搭建了个人博客。
 
 
 
