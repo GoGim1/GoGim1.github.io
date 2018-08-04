@@ -111,6 +111,22 @@ layout: default
                 <!-- disqus 评论框 end -->
                 {% endif %}
 
+                
+                <div id="gitmentContainer"></div>
+                <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+                <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+                <script>
+                var gitment = new Gitment({
+                    owner: 'GoGim1',
+                    repo: 'GoGim1.github.io',
+                    oauth: {
+                        client_id: '2c0b97bfeafdeba2e39b',
+                        client_secret: '26593027f98cea8d6343a4a5aa9999abff6e6a42',
+                    },
+                });
+                gitment.render('gitmentContainer');
+                </script>
+                
             </div>
 
     <!-- Sidebar Container -->
@@ -147,9 +163,13 @@ layout: default
                 </ul>
                 {% endif %}
             </div>
+
         </div>
     </div>
 </article>
+
+
+
 
 {% if site.duoshuo_username %}
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->

@@ -187,6 +187,22 @@
 
                 
 
+                
+                <div id="gitmentContainer"></div>
+                <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+                <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+                <script>
+                var gitment = new Gitment({
+                    owner: 'GoGim1',
+                    repo: 'GoGim1.github.io',
+                    oauth: {
+                        client_id: '2c0b97bfeafdeba2e39b',
+                        client_secret: '26593027f98cea8d6343a4a5aa9999abff6e6a42',
+                    },
+                });
+                gitment.render('gitmentContainer');
+                </script>
+                
             </div>
 
     <!-- Sidebar Container -->
@@ -211,9 +227,13 @@
                 <!-- Friends Blog -->
                 
             </div>
+
         </div>
     </div>
 </article>
+
+
+
 
 
 
@@ -287,12 +307,12 @@
                 <p class="copyright text-muted">
                     Copyright &copy; Wu's Blog 2018
                     <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> |
-                    <iframe
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <!-- <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
                         src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
-                    </iframe>
+                    </iframe> -->
                 </p>
             </div>
         </div>
