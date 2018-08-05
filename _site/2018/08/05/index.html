@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>吴金泽的博客 | Wu's Blog</title>
+    <title>蒙特卡罗方法的数学基础 - 吴金泽的博客 | Wu's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="canonical" href="http://localhost:4000/2018/08/05/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -123,153 +123,174 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/temp.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/temp.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/temp.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Wu's Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading"></span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#计算机图形学" title="计算机图形学">计算机图形学</a>
+                        
+                        <a class="tag" href="/tags/#翻译" title="翻译">翻译</a>
+                        
+                        <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>蒙特卡罗方法的数学基础</h1>
+                    
+                    
+                    <h2 class="subheading">Mathematical Foundations of Monte Carlo Methods</h2>
+                    
+                    <span class="meta">Posted by Wu on August 5, 2018</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2018/08/05/">
-        <h2 class="post-title">
-            蒙特卡罗方法的数学基础
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Mathematical Foundations of Monte Carlo Methods
-        </h3>
-        
-        <div class="post-content-preview">
-            前言
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-简介
+				<h2 id="前言">前言</h2>
+
+<h2 id="简介">简介</h2>
+<p><script type="math/tex">Approximation(Average(X)) = { 1 \over N} \sum_{n=1}^N x_n.</script></p>
 
 
 
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Wu on August 5, 2018
-    </p>
-</div>
-<hr>
+                <hr>
 
-<div class="post-preview">
-    <a href="/2018/08/04/hello-blog/">
-        <h2 class="post-title">
-            个人博客搭建完成
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Hello World, Hello Blog"
-        </h3>
-        
-        <div class="post-content-preview">
-            正文
-
-今天使用 GitHub Pages + Jekyll + huxblog boilerplate + gitment 搭建了个人博客。
+                
 
 
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Wu on August 4, 2018
-    </p>
-</div>
-<hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/08/04/hello-blog/" data-toggle="tooltip" data-placement="top" title="个人博客搭建完成">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
 
 
-<!-- Pager -->
+                
 
+                
 
-    		</div>
+                
+                <div id="gitmentContainer"></div>
+                <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+                <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+                <script>
+                var gitment = new Gitment({
+                    owner: 'GoGim1',
+                    repo: 'GoGim1.github.io',
+                    oauth: {
+                        client_id: '2c0b97bfeafdeba2e39b',
+                        client_secret: '26593027f98cea8d6343a4a5aa9999abff6e6a42',
+                    },
+                });
+                gitment.render('gitmentContainer');
+                </script>
+                
+            </div>
+
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
+        				
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-hux.jpg" />
-                        
-                        
-                            <p>大三学生。</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/GoGim1">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
