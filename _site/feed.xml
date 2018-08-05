@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 05 Aug 2018 12:52:40 +0800</pubDate>
-    <lastBuildDate>Sun, 05 Aug 2018 12:52:40 +0800</lastBuildDate>
+    <pubDate>Sun, 05 Aug 2018 17:16:11 +0800</pubDate>
+    <lastBuildDate>Sun, 05 Aug 2018 17:16:11 +0800</lastBuildDate>
     <generator>Jekyll v3.8.3</generator>
     
       <item>
@@ -14,8 +14,6 @@
         <description>&lt;blockquote&gt;
   &lt;p&gt;本文是我在 &lt;a href=&quot;www.scratchapixel.com&quot;&gt;scratchapixel&lt;/a&gt; 的学习笔记&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
 
 &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
 
@@ -132,10 +130,114 @@ void render()
 } 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h2 id=&quot;随机变量和概率&quot;&gt;随机变量和概率&lt;/h2&gt;
+
+&lt;h2 id=&quot;概率分布第1部分&quot;&gt;概率分布：第1部分&lt;/h2&gt;
+&lt;h2 id=&quot;概率属性&quot;&gt;概率属性&lt;/h2&gt;
+&lt;h2 id=&quot;统计学概论&quot;&gt;统计学概论&lt;/h2&gt;
+&lt;h2 id=&quot;期望值&quot;&gt;期望值&lt;/h2&gt;
+&lt;h2 id=&quot;方差和标准差&quot;&gt;方差和标准差&lt;/h2&gt;
+&lt;h2 id=&quot;概率分布第2部分&quot;&gt;概率分布：第2部分&lt;/h2&gt;
+&lt;h2 id=&quot;采样分布&quot;&gt;采样分布&lt;/h2&gt;
+&lt;h2 id=&quot;概率密度函数pdf和累积分布函数cdf&quot;&gt;概率密度函数（PDF）和累积分布函数（CDF）&lt;/h2&gt;
+&lt;h2 id=&quot;随机变量函数的期望值无意识统计学家的规律&quot;&gt;随机变量函数的期望值：无意识统计学家的规律&lt;/h2&gt;
+&lt;h2 id=&quot;逆变换采样方法&quot;&gt;逆变换采样方法&lt;/h2&gt;
+&lt;h2 id=&quot;估计&quot;&gt;估计&lt;/h2&gt;
+
 </description>
         <pubDate>Sun, 05 Aug 2018 09:00:00 +0800</pubDate>
         <link>http://localhost:4000/2018/08/05/MC_Methods/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/08/05/MC_Methods/</guid>
+        
+        <category>计算机图形学</category>
+        
+        <category>翻译</category>
+        
+        <category>读书笔记</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>光线追踪简介</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;本文是我在 &lt;a href=&quot;www.scratchapixel.com&quot;&gt;scratchapixel&lt;/a&gt; 的学习笔记&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;简单的光线追踪算法&quot;&gt;简单的光线追踪算法&lt;/h2&gt;
+&lt;h3 id=&quot;forward-tracing&quot;&gt;Forward Tracing&lt;/h3&gt;
+&lt;p&gt;首先，我们用由像素组成的图像平面替换我们的眼睛。在这种情况下，物体发射的光线将击中图像平面上的许多像素中的一个，将该像素处的亮度增加。重复该过程多次，直到调整所有像素，从而创建计算机生成的图像。这种方法称为 &lt;strong&gt;forward&lt;/strong&gt; &lt;strong&gt;ray-tracing&lt;/strong&gt; 或 &lt;strong&gt;light&lt;/strong&gt; &lt;strong&gt;tracing&lt;/strong&gt;。
+&lt;img src=&quot;http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/lighttoeyebounce.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是这种方法有些缺点，光线在每个可能的方向上发射，每个方向都有非常小的击中眼睛的可能性。我们不得不从光源投射数以万计的光线，确保找到一个能够击中眼睛的光线。这浪费大量的计算资源。&lt;/p&gt;
+
+&lt;p&gt;其次，我们可以想象将光线射入场景的过程，就好像你将小颗粒的油漆喷射到物体表面上一样。如果喷雾不够密集，一些区域将不会被照射。即使光线数目很多，你也不能真正保证我们物体的表面完全被光子覆盖。
+&lt;img src=&quot;http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/teapotracing.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;backward-tracing&quot;&gt;Backward Tracing&lt;/h3&gt;
+&lt;p&gt;如果我们不是将光线从光源追踪到受体（例如我们的眼睛），而是将光线从受体反向追踪到物体，这种方法称为&lt;strong&gt;backward&lt;/strong&gt; &lt;strong&gt;ray-tracing&lt;/strong&gt; 或 &lt;strong&gt;eye&lt;/strong&gt; &lt;strong&gt;tracing&lt;/strong&gt;。&lt;img src=&quot;http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/tracefromeyetolight.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们将从眼睛射出的&lt;strong&gt;第一条&lt;/strong&gt;射线称为&lt;strong&gt;primary&lt;/strong&gt; &lt;strong&gt;ray&lt;/strong&gt;、&lt;strong&gt;visibility&lt;/strong&gt; &lt;strong&gt;ray&lt;/strong&gt; 或 &lt;strong&gt;camera&lt;/strong&gt; &lt;strong&gt;ray&lt;/strong&gt;，最后一段射线称为&lt;strong&gt;shadow&lt;/strong&gt; &lt;strong&gt;rays&lt;/strong&gt;。
+假设射线与物体的第一个交点为P，射线通过多次发射最终能抵达光源，则P点可以接收到光源的辐射；假如射线抵达不了光源，则P点接收不到光源的辐射。
+&lt;img src=&quot;http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/lightingnoshadow.gif&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/lightingshadow.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;实现光线跟踪算法&quot;&gt;实现光线跟踪算法&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for (int j = 0; j &amp;lt; imageHeight; ++j) { 
+    for (int i = 0; i &amp;lt; imageWidth; ++i) { 
+        // compute primary ray direction
+        Ray primRay; 
+        computePrimRay(i, j, &amp;amp;primRay); 
+        // shoot prim ray in the scene and search for intersection
+        Point pHit; 
+        Normal nHit; 
+        float minDist = INFINITY; 
+        Object object = NULL; 
+        for (int k = 0; k &amp;lt; objects.size(); ++k) { 
+            if (Intersect(objects[k], primRay, &amp;amp;pHit, &amp;amp;nHit)) { 
+                float distance = Distance(eyePosition, pHit); 
+                if (distance &amp;lt; minDistance) { 
+                    object = objects[k]; 
+                    minDistance = distance; // update min distance 
+                } 
+            } 
+        } 
+        if (object != NULL) { 
+            // compute illumination
+            Ray shadowRay; 
+            shadowRay.direction = lightPosition - pHit; 
+            bool isShadow = false; 
+            for (int k = 0; k &amp;lt; objects.size(); ++k) { 
+                if (Intersect(objects[k], shadowRay)) { 
+                    isInShadow = true; 
+                    break; 
+                } 
+            } 
+        } 
+        if (!isInShadow) 
+            pixels[i][j] = object-&amp;gt;color * light.brightness; 
+        else 
+            pixels[i][j] = 0; 
+    } 
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;添加反射和折射&quot;&gt;添加反射和折射&lt;/h2&gt;
+&lt;p&gt;考虑玻璃球这样同时具有反射性和折射性的物体，我们需要为表面上的点计算反射值和折射值，但我们如何将它们混合在一起？
+我们使用可以应用菲涅耳公式。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;首先计算反射方向&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;编写基本光线跟踪器&quot;&gt;编写基本光线跟踪器&lt;/h2&gt;
+&lt;h2 id=&quot;源代码&quot;&gt;源代码&lt;/h2&gt;
+
+</description>
+        <pubDate>Sun, 05 Aug 2018 09:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/08/05/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/05/</guid>
         
         <category>计算机图形学</category>
         

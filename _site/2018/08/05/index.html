@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Wu's Blog</title>
+    <title>光线追踪简介 - Wu's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="canonical" href="http://localhost:4000/2018/08/05/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -123,194 +123,259 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/temp.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/temp.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/temp.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Wu's Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading"></span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#计算机图形学" title="计算机图形学">计算机图形学</a>
+                        
+                        <a class="tag" href="/tags/#翻译" title="翻译">翻译</a>
+                        
+                        <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>光线追踪简介</h1>
+                    
+                    
+                    <h2 class="subheading">Introduction to Ray Tracing: a Simple Method for Creating 3D Images</h2>
+                    
+                    <span class="meta">Posted by Wu on August 5, 2018</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/2018/08/05/MC_Methods/">
-        <h2 class="post-title">
-            蒙特卡罗方法的数学基础
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Mathematical Foundations of Monte Carlo Methods
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  本文是我在 scratchapixel 的学习笔记
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<blockquote>
+  <p>本文是我在 <a href="www.scratchapixel.com">scratchapixel</a> 的学习笔记</p>
+</blockquote>
+
+<h2 id="简单的光线追踪算法">简单的光线追踪算法</h2>
+<h3 id="forward-tracing">Forward Tracing</h3>
+<p>首先，我们用由像素组成的图像平面替换我们的眼睛。在这种情况下，物体发射的光线将击中图像平面上的许多像素中的一个，将该像素处的亮度增加。重复该过程多次，直到调整所有像素，从而创建计算机生成的图像。这种方法称为 <strong>forward</strong> <strong>ray-tracing</strong> 或 <strong>light</strong> <strong>tracing</strong>。
+<img src="http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/lighttoeyebounce.png" alt="" /></p>
+
+<p>但是这种方法有些缺点，光线在每个可能的方向上发射，每个方向都有非常小的击中眼睛的可能性。我们不得不从光源投射数以万计的光线，确保找到一个能够击中眼睛的光线。这浪费大量的计算资源。</p>
+
+<p>其次，我们可以想象将光线射入场景的过程，就好像你将小颗粒的油漆喷射到物体表面上一样。如果喷雾不够密集，一些区域将不会被照射。即使光线数目很多，你也不能真正保证我们物体的表面完全被光子覆盖。
+<img src="http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/teapotracing.gif" alt="" /></p>
+
+<h3 id="backward-tracing">Backward Tracing</h3>
+<p>如果我们不是将光线从光源追踪到受体（例如我们的眼睛），而是将光线从受体反向追踪到物体，这种方法称为<strong>backward</strong> <strong>ray-tracing</strong> 或 <strong>eye</strong> <strong>tracing</strong>。<img src="http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/tracefromeyetolight.gif" alt="" /></p>
+
+<p>我们将从眼睛射出的<strong>第一条</strong>射线称为<strong>primary</strong> <strong>ray</strong>、<strong>visibility</strong> <strong>ray</strong> 或 <strong>camera</strong> <strong>ray</strong>，最后一段射线称为<strong>shadow</strong> <strong>rays</strong>。
+假设射线与物体的第一个交点为P，射线通过多次发射最终能抵达光源，则P点可以接收到光源的辐射；假如射线抵达不了光源，则P点接收不到光源的辐射。
+<img src="http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/lightingnoshadow.gif" alt="" />
+<img src="http://www.scratchapixel.com/images/upload/introduction-to-ray-tracing/lightingshadow.gif" alt="" /></p>
+
+<h2 id="实现光线跟踪算法">实现光线跟踪算法</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (int j = 0; j &lt; imageHeight; ++j) { 
+    for (int i = 0; i &lt; imageWidth; ++i) { 
+        // compute primary ray direction
+        Ray primRay; 
+        computePrimRay(i, j, &amp;primRay); 
+        // shoot prim ray in the scene and search for intersection
+        Point pHit; 
+        Normal nHit; 
+        float minDist = INFINITY; 
+        Object object = NULL; 
+        for (int k = 0; k &lt; objects.size(); ++k) { 
+            if (Intersect(objects[k], primRay, &amp;pHit, &amp;nHit)) { 
+                float distance = Distance(eyePosition, pHit); 
+                if (distance &lt; minDistance) { 
+                    object = objects[k]; 
+                    minDistance = distance; // update min distance 
+                } 
+            } 
+        } 
+        if (object != NULL) { 
+            // compute illumination
+            Ray shadowRay; 
+            shadowRay.direction = lightPosition - pHit; 
+            bool isShadow = false; 
+            for (int k = 0; k &lt; objects.size(); ++k) { 
+                if (Intersect(objects[k], shadowRay)) { 
+                    isInShadow = true; 
+                    break; 
+                } 
+            } 
+        } 
+        if (!isInShadow) 
+            pixels[i][j] = object-&gt;color * light.brightness; 
+        else 
+            pixels[i][j] = 0; 
+    } 
+} 
+</code></pre></div></div>
+
+<h2 id="添加反射和折射">添加反射和折射</h2>
+<p>考虑玻璃球这样同时具有反射性和折射性的物体，我们需要为表面上的点计算反射值和折射值，但我们如何将它们混合在一起？
+我们使用可以应用菲涅耳公式。</p>
+
+<ul>
+  <li>首先计算反射方向</li>
+  <li></li>
+</ul>
+
+<h2 id="编写基本光线跟踪器">编写基本光线跟踪器</h2>
+<h2 id="源代码">源代码</h2>
 
 
-简介
 
-快速介绍
+                <hr>
 
-生活中的许多事情都难以准确评估，特别是涉及到非常大的数字的时候。例如计算一个国家的成年人口的平均身高，我们不太可能去统计每一个人的身高，而是取一个人口样本并计算其平均身高，得出其结果作为近似值。虽然结果并不十分精确，但随着样本的大小增加，近似值与实际结果之间的误差随着样本量的增加而变小。这是一种用准确性换取时间...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Wu on August 5, 2018
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2018/08/05/">
-        <h2 class="post-title">
-            光线追踪简介
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Introduction to Ray Tracing: a Simple Method for Creating 3D Images
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  本文是我在 scratchapixel 的学习笔记
+                
 
 
-简单的光线追踪算法
-Forward Tracing
-首先，我们用由像素组成的图像平面替换我们的眼睛。在这种情况下，物体发射的光线将击中图像平面上的许多像素中的一个，将该像素处的亮度增加。重复该过程多次，直到调整所有像素，从而创建计算机生成的图像。这种方法称为 forward ray-tracing 或 light tracing。...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Wu on August 5, 2018
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2018/08/04/hello-blog/">
-        <h2 class="post-title">
-            个人博客搭建完成
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Hello World, Hello Blog"
-        </h3>
-        
-        <div class="post-content-preview">
-            正文
-
-今天使用 GitHub Pages + Jekyll + huxblog boilerplate + gitment 搭建了个人博客。
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/08/04/hello-blog/" data-toggle="tooltip" data-placement="top" title="个人博客搭建完成">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/08/05/MC_Methods/" data-toggle="tooltip" data-placement="top" title="蒙特卡罗方法的数学基础">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
 
 
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Wu on August 4, 2018
-    </p>
-</div>
-<hr>
+                
 
+                
 
-<!-- Pager -->
+                
+                <div id="gitmentContainer"></div>
+                <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+                <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+                <script>
+                var gitment = new Gitment({
+                    owner: 'GoGim1',
+                    repo: 'GoGim1.github.io',
+                    oauth: {
+                        client_id: '2c0b97bfeafdeba2e39b',
+                        client_secret: '26593027f98cea8d6343a4a5aa9999abff6e6a42',
+                    },
+                });
+                gitment.render('gitmentContainer');
+                </script>
+                
+            </div>
 
-
-    		</div>
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
+        				
                             
-                        
+        				
                             
-                                <a href="/tags/#计算机图形学" title="计算机图形学" rel="2">
+                				<a href="/tags/#计算机图形学" title="计算机图形学" rel="2">
                                     计算机图形学
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#翻译" title="翻译" rel="2">
+                				<a href="/tags/#翻译" title="翻译" rel="2">
                                     翻译
                                 </a>
                             
-                        
+        				
                             
-                                <a href="/tags/#读书笔记" title="读书笔记" rel="2">
+                				<a href="/tags/#读书笔记" title="读书笔记" rel="2">
                                     读书笔记
                                 </a>
                             
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-hux.jpg" />
-                        
-                        
-                            <p>大三学生。</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/GoGim1">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
